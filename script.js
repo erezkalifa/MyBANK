@@ -184,6 +184,28 @@ btnTransfer.addEventListener('click', function (e) {
   }
 });
 
+const loan = inputLoanAmount.value;
+btnLoan.addEventListener('click', function () {});
+
+btnClose.addEventListener('click', function (e) {
+  e.preventDefault();
+
+  if (
+    inputCloseUsername.value === currentAccount.userName &&
+    Number(inputClosePin.value) === currentAccount.pin
+  ) {
+    const index = accounts.findIndex(
+      acc => acc.userName === currentAccount.userName
+    );
+    // Delete account
+    accounts.splice(index, 1);
+
+    // Hide UI
+    containerApp.style.opacity = 0;
+  }
+  inputCloseUsername.value = inputClosePin.value = '';
+});
+
 const deposits = movements.filter(mov => mov > 0);
 // console.log(deposits);
 
